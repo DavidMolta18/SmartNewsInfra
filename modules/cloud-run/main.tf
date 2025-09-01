@@ -5,39 +5,43 @@ resource "google_cloud_run_service" "service" {
   template {
     spec {
       service_account_name = var.service_account
-      containers {
-        image = var.image_url
 
-        resources {
-          limits = {
-            memory = "512Mi"
-            cpu    = "1"
+      dynamic "containers" {
+        for_each = var.image_url != "" ? [var.image_url] : []
+        content {
+          image = containers.value
+
+          resources {
+            limits = {
+              memory = "512Mi"
+              cpu    = "1"
+            }
           }
-        }
 
-        env {
-          name  = "QDRANT_URL"
-          value = var.qdrant_url
-        }
-        env {
-          name  = "QDRANT_API_KEY"
-          value = var.qdrant_api_key
-        }
-        env {
-          name  = "GCP_PROJECT"
-          value = var.project_id
-        }
-        env {
-          name  = "GCP_LOCATION"
-          value = var.region
-        }
-        env {
-          name  = "PROVIDER_EMBEDDINGS"
-          value = "vertex"
-        }
-        env {
-          name  = "EMBEDDING_MODEL"
-          value = "text-embedding-005"
+          env {
+            name  = "QDRANT_URL"
+            value = var.qdrant_url
+          }
+          env {
+            name  = "QDRANT_API_KEY"
+            value = var.qdrant_api_key
+          }
+          env {
+            name  = "GCP_PROJECT"
+            value = var.project_id
+          }
+          env {
+            name  = "GCP_LOCATION"
+            value = var.region
+          }
+          env {
+            name  = "PROVIDER_EMBEDDINGS"
+            value = "vertex"
+          }
+          env {
+            name  = "EMBEDDING_MODEL"
+            value = "text-embedding-005"
+          }
         }
       }
     }
