@@ -1,5 +1,6 @@
 variable "project_id" {
-  type = string
+  type    = string
+  default = "pivotal-mile-470503-n8"
 }
 
 variable "region" {
@@ -13,14 +14,16 @@ variable "service_name" {
 }
 
 variable "image_url" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "qdrant_url" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "qdrant_api_key" {
-  type = string
+  type    = string
+  default = ""
 }
