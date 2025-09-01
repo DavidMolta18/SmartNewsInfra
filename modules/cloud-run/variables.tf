@@ -11,8 +11,10 @@ variable "service_name" {
 }
 
 variable "image_url" {
-  type = string
+  type    = string
+  default = ""
 }
+
 
 variable "service_account" {
   type = string
