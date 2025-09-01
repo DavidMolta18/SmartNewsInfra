@@ -3,16 +3,18 @@ variable "project_id" {
 }
 
 variable "region" {
-  type    = string
-  default = "us-central1"
+  type = string
 }
 
 variable "service_name" {
-  type    = string
-  default = "smartnewsapi"
+  type = string
 }
 
 variable "image_url" {
+  type = string
+}
+
+variable "service_account" {
   type = string
 }
 

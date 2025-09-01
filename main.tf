@@ -16,6 +16,8 @@ module "cloud_run" {
   project_id      = var.project_id
   region          = var.region
   service_name    = var.service_name
-  image_url       = "${module.artifact_registry.repo_url}/smartnewsapi:latest"
+  image_url       = var.image_url
   service_account = module.iam.sa_email
+  qdrant_url     = var.qdrant_url
+  qdrant_api_key = var.qdrant_api_key
 }
