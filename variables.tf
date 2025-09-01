@@ -14,6 +14,7 @@ variable "service_name" {
 
 variable "image_url" {
   type = string
+  default = ""
 }
 
 variable "qdrant_url" {
